@@ -1,0 +1,46 @@
+<%= form_for([:admin, @shipping_box]) do |f| %>
+  <% if @shipping_box.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shipping_box.errors.count, "error") %> prohibited this shipping_box from being saved:</h2>
+
+      <ul>
+      <% @shipping_box.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, "Nome" %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :height, "Altura (cm)" %><br />
+    <%= f.text_field :height %>
+  </div>
+  <div class="field">
+    <%= f.label :width, "Largura (cm)" %><br />
+    <%= f.text_field :width %>
+  </div>
+  <div class="field">
+    <%= f.label :length, "Comprimento (cm)" %><br />
+    <%= f.text_field :length %>
+  </div>
+  <div class="field">
+    <%= f.label :weight, "Peso (g)" %><br />
+    <%= f.text_field :weight %>
+  </div>
+  <div class="field">
+    <%= f.label :weight, "Quantidade de itens" %><br />
+    <%= f.text_field :quantity %>
+  </div>
+  <div class="field">
+    <%= f.label :enabled, "Ativa?" %><br />
+		<%= f.check_box :enabled %> 
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<br /><br />

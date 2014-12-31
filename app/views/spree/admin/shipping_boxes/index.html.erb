@@ -1,0 +1,40 @@
+<%= render :partial => 'spree/admin/shared/configuration_menu' %>
+
+<% content_for :page_title do %>
+  Modelos de caixas
+<% end %>
+
+<table>
+  <thead><tr>
+		<th>Nome</th>
+    <th>Altura</th>
+    <th>Largura</th>
+    <th>Comprimento</th>
+    <th>Peso</th>
+		<th>Qtde</th>
+		<th>Status</th>
+    <th data-hook="admin_orders_index_header_actions" class="actions"></th>
+  </tr></thead>
+
+<% @shipping_boxes.each do |shipping_box| %>
+<tbody>
+  <tr>
+		<td><%= shipping_box.name %></td>
+    <td><%= shipping_box.height %></td>
+    <td><%= shipping_box.width %></td>
+    <td><%= shipping_box.length %></td>
+    <td><%= shipping_box.weight %></td>
+		<td><%= shipping_box.quantity %></td>
+		<td><%= shipping_box.enabled %></td>
+    <td class='actions align-center' data-hook="admin_orders_index_row_actions">
+			<%= link_to_edit_url edit_admin_shipping_box_path(shipping_box), :no_text => true %>
+			<%= link_to_delete shipping_box, :no_text => true, :url => admin_shipping_box_path(shipping_box) %>
+		</td>
+  </tr>
+</tbody>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Novo modelo de caixa', new_admin_shipping_box_path %>
