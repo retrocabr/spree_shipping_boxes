@@ -1,46 +1,49 @@
-<%= form_for([:admin, @shipping_box]) do |f| %>
-  <% if @shipping_box.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@shipping_box.errors.count, "error") %> prohibited this shipping_box from being saved:</h2>
+<div data-hook="admin_shipping_box_form_header">
+  <%= render partial: 'spree/admin/shared/error_messages', locals: { target: @shipping_box } %>
+</div>
 
-      <ul>
-      <% @shipping_box.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<div data-hook="admin_shipping_box_form">
+  <%= form_for([:admin, @shipping_box]) do |f| %>
+    <div data-hook="admin_shipping_box_form_fields" class="row">
+      <div class="col-md-6">
+        <div class="form-group field">
+          <%= f.label :name, "Nome" %>
+          <%= f.text_field :name, class: 'form-control' %>
+          <%= f.error_message_on :name %>
+        </div>
+        <div class="form-group field">
+          <%= f.label :quantity, "Quantidade de itens" %>
+          <%= f.number_field :quantity, class: 'form-control' %>
+          <%= f.error_message_on :quantity %>
+        </div>
+        <div class="form-group field">
+          <%= f.label :enabled do %>
+            <%= f.check_box :enabled %>
+            <%= t('shipping_boxes.active') %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group field">
+          <%= f.label :height, "Altura (cm)" %>
+          <%= f.text_field :height, class: 'form-control' %>
+        </div>
+        <div class="form-group field">
+          <%= f.label :width, "Largura (cm)" %>
+          <%= f.text_field :width, class: 'form-control' %>
+        </div>
+        <div class="form-group field">
+          <%= f.label :length, "Comprimento (cm)" %>
+          <%= f.text_field :length, class: 'form-control' %>
+        </div>
+        <div class="form-group field">
+          <%= f.label :weight, "Peso (g)" %>
+          <%= f.text_field :weight, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div data-hook="admin_shipping_box_form_buttons">
+      <%= render partial: 'spree/admin/shared/new_resource_links' %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name, "Nome" %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :height, "Altura (cm)" %><br />
-    <%= f.text_field :height %>
-  </div>
-  <div class="field">
-    <%= f.label :width, "Largura (cm)" %><br />
-    <%= f.text_field :width %>
-  </div>
-  <div class="field">
-    <%= f.label :length, "Comprimento (cm)" %><br />
-    <%= f.text_field :length %>
-  </div>
-  <div class="field">
-    <%= f.label :weight, "Peso (g)" %><br />
-    <%= f.text_field :weight %>
-  </div>
-  <div class="field">
-    <%= f.label :weight, "Quantidade de itens" %><br />
-    <%= f.text_field :quantity %>
-  </div>
-  <div class="field">
-    <%= f.label :enabled, "Ativa?" %><br />
-		<%= f.check_box :enabled %> 
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-<br /><br />
+</div>

@@ -1,5 +1,6 @@
-<h1>Novo modelo de caixa</h1>
+<% content_for :page_title do %>
+  <%= link_to t('shipping_boxes.shipping_boxes'), admin_shipping_boxes_url %> /
+  <%= t('shipping_boxes.new') %>
+<% end %>
 
 <%= render 'form' %>
-
-<%= link_to 'Voltar', admin_shipping_boxes_path %>

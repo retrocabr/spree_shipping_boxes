@@ -1,0 +1,6 @@
+pt-BR:
+  shipping_boxes:
+    shipping_boxes: 'Caixas'
+    configuration_link: Configuração de Caixas
+    new: Novo modelo de caixa
+    active: Ativa?

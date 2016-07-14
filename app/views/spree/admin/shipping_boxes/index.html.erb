@@ -1,10 +1,12 @@
-<%= render :partial => 'spree/admin/shared/configuration_menu' %>
-
 <% content_for :page_title do %>
   Modelos de caixas
 <% end %>
 
-<table>
+<% content_for :page_actions do %>
+  <%= button_link_to t('shipping_boxes.new'), new_admin_shipping_box_path, class: "btn-success", icon: 'add', id: 'admin_new_shipping_box' %>
+<% end if can? :create, Spree::Order %>
+
+<table class="table">
   <thead><tr>
 		<th>Nome</th>
     <th>Altura</th>
@@ -34,7 +36,3 @@
 </tbody>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'Novo modelo de caixa', new_admin_shipping_box_path %>
