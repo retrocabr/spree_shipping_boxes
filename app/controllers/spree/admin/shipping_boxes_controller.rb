@@ -31,7 +31,7 @@ module Spree
       # POST /shipping_boxes
       # POST /shipping_boxes.json
       def create
-        @shipping_box = ShippingBox.new(params[:shipping_box])
+        @shipping_box = ShippingBox.new(shipping_boxes_params)
 
         respond_to do |format|
           if @shipping_box.save
@@ -50,7 +50,7 @@ module Spree
         @shipping_box = ShippingBox.find(params[:id])
 
         respond_to do |format|
-          if @shipping_box.update_attributes(params[:shipping_box])
+          if @shipping_box.update_attributes(shipping_boxes_params)
             format.html { redirect_to admin_shipping_boxes_url, notice: 'Modelo de caixa atualizado com sucesso.' }
             format.json { head :no_content }
           else
@@ -70,6 +70,12 @@ module Spree
           format.html { redirect_to admin_shipping_boxes_url }
           format.json { head :no_content }
         end
+      end
+
+      private
+
+      def shipping_boxes_params
+        params.require(:shipping_box).permit(:name,:quantity,:enabled,:height,:width,:length,:weight)
       end
     end
   end
